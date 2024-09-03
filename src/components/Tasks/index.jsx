@@ -1,7 +1,7 @@
 import { Task } from "../Task";
 import styles from "./tasks.module.css";
 
-export function Tasks({ tasks }) {
+export function Tasks({ tasks, onComplete, onDelete }) {
     const tasksQuantity = tasks.length;
     const completedTasks = tasks.filter(task => task.isCompleted).length;
 
@@ -13,7 +13,7 @@ export function Tasks({ tasks }) {
                     <span>{tasksQuantity}</span>
                 </div>
 
-                <div>
+                <div className={styles.textPurple}>
                     <p>Tarefas completas</p>
                     <span>{completedTasks} de {tasksQuantity}</span>
                 </div>
@@ -23,7 +23,9 @@ export function Tasks({ tasks }) {
                 {tasks.map(task => (
                     <Task 
                         key={task.id} 
-                        task={task} 
+                        task={task}
+                        onComplete={onComplete}
+                        onDelete={onDelete}
                     />
                 ))}
             </div>
